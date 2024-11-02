@@ -5,7 +5,7 @@ VERSION=$(date +%Y-%m-%d)
 
 # 检查传入的软件名参数，检测通过后赋值变量SOFT_NAME
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
-    echo "fakedeb-shell v1.0.0 (2024-06-30 16:54:21 CST)"
+    echo "fakedeb-shell v1.0.1 (2024-11-02 08:31:29 CST)"
     echo "Usage: $0 <SOFT_NAME> [VERSION]"
     exit 1
 fi
