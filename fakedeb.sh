@@ -4,12 +4,18 @@
 VERSION=$(date +%Y-%m-%d)
 
 # 检查传入的软件名参数，检测通过后赋值变量SOFT_NAME
-if [ "$#" -ne 1 ]; then
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     echo "fakedeb-shell v1.0.0 (2024-06-30 16:54:21 CST)"
-    echo "Usage: $0 <SOFT_NAME>"
+    echo "Usage: $0 <SOFT_NAME> [VERSION]"
     exit 1
 fi
+
 SOFT_NAME="$1"
+
+# 如果提供了版本号参数，则使用它；否则使用当前日期
+if [ "$#" -eq 2 ]; then
+    VERSION="$2"
+fi
 
 # 创建deb包的临时目录
 TEMP_DIR=$(mktemp -d)
@@ -26,7 +32,7 @@ Package: ${SOFT_NAME}
 Version: ${VERSION}
 Architecture: all
 Maintainer: Your Name <youremail@example.com>
-Description: An fake Debian package for ${SOFT_NAME}
+Description: A fake Debian package for ${SOFT_NAME}
 EOF
 
 # 使用dpkg-deb打包
